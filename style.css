@@ -485,7 +485,13 @@ body {
     color: var(--text-secondary);
 }
 
+/* ================================================ 
+   RESPONSIVE CANVAS WRAPPER 
+   ================================================ */
 #canvas-wrapper {
+    width: 100%;
+    max-width: 380px; /* Max native width */
+    margin: 0 auto; /* Center it */
     border-radius: 6px;
     overflow: hidden;
     box-shadow: 
@@ -497,6 +503,19 @@ body {
 #game-canvas {
     display: block;
     cursor: pointer;
+    
+    /* Responsive Scaling Magic */
+    width: 100% !important; /* Stretch to container width */
+    height: auto !important; /* Maintain aspect ratio automatically */
+    
+    /* Prevent canvas from being taller than the screen */
+    /* 160px accounts for scoreboard, turn indicator, and padding */
+    max-height: calc(100vh - 160px); 
+    object-fit: contain;
+    
+    /* Performance & Interaction */
+    touch-action: none; /* Prevent scroll interference */
+    background-color: var(--field-green);
 }
 
 .game-controls {
