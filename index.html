@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>GoalDao</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Landing Page -->
+    <div id="landing-page" class="page active">
+        <div class="landing-container">
+            <div class="title-section">
+                <h1 class="game-title">GoalDao</h1>
+                <p class="subtitle">Strategic Football Passing</p>
+            </div>
+            
+            <div class="setup-panel">
+                <div class="team-setup">
+                    <div class="team-input-group team1">
+                        <div class="team-header">
+                            <span class="team-color blue"></span>
+                            <label>Team 1 (Blue)</label>
+                        </div>
+                        <input type="text" id="team1-name" placeholder="Enter team name..." maxlength="15">
+                    </div>
+                    
+                    <div class="vs-divider">VS</div>
+                    
+                    <div class="team-input-group team2">
+                        <div class="team-header">
+                            <span class="team-color red"></span>
+                            <label>Team 2 (Red)</label>
+                        </div>
+                        <input type="text" id="team2-name" placeholder="Enter team name..." maxlength="15">
+                    </div>
+                </div>
+                
+                <div class="time-setup">
+                    <label for="game-time">Match Duration</label>
+                    <div class="time-selector">
+                        <button class="time-btn" data-time="1">1 min</button>
+                        <button class="time-btn" data-time="3">3 min</button>
+                        <button class="time-btn active" data-time="5">5 min</button>
+                        <button class="time-btn" data-time="10">10 min</button>
+                    </div>
+                </div>
+                
+                <div class="action-buttons">
+                    <button id="start-btn" class="btn btn-primary">Start Match</button>
+                    <button id="rules-btn" class="btn btn-secondary">Game Rules</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Rules Modal -->
+    <div id="rules-modal" class="modal">
+        <div class="modal-backdrop"></div>
+        <div class="modal-content">
+            <button class="modal-close" id="close-rules">&times;</button>
+            <h2>How to Play</h2>
+            <div class="rules-grid">
+                <div class="rule-item">
+                    <div class="rule-number">1</div>
+                    <div class="rule-text">
+                        <strong>Select & Pass</strong>
+                        <p>Click a player with the ball, then click a teammate to pass.</p>
+                    </div>
+                </div>
+                <div class="rule-item">
+                    <div class="rule-number">2</div>
+                    <div class="rule-text">
+                        <strong>Shoot!</strong>
+                        <p>Blue attacks the BOTTOM goal. Red attacks the TOP goal. Click inside the goal area to shoot.</p>
+                    </div>
+                </div>
+                <div class="rule-item">
+                    <div class="rule-number">3</div>
+                    <div class="rule-text">
+                        <strong>Interception</strong>
+                        <p>If your pass crosses an opponent, they intercept the ball!</p>
+                    </div>
+                </div>
+                <div class="rule-item">
+                    <div class="rule-number">4</div>
+                    <div class="rule-text">
+                        <strong>Goal!</strong>
+                        <p>Score in the opponent's goal. The goalkeeper restarts play.</p>
+                    </div>
+                </div>
+            </div>
+            <button id="close-modal-btn" class="btn btn-primary">Got it</button>
+        </div>
+    </div>
+    
+    <!-- Game Page -->
+    <div id="game-page" class="page">
+        <div class="game-container">
+            <div id="scoreboard">
+                <div class="team-score team1-score">
+                    <span class="team-name" id="team1-display">Team 1</span>
+                    <span class="score" id="score1">0</span>
+                </div>
+                <div class="timer-container">
+                    <div id="timer">05:00</div>
+                    <div class="timer-label">TIME</div>
+                </div>
+                <div class="team-score team2-score">
+                    <span class="score" id="score2">0</span>
+                    <span class="team-name" id="team2-display">Team 2</span>
+                </div>
+            </div>
+            
+            <div id="turn-indicator">
+                <span class="turn-dot blue"></span>
+                <span id="turn-text">Team 1's Turn</span>
+            </div>
+            
+            <div id="canvas-wrapper">
+                <canvas id="game-canvas"></canvas>
+            </div>
+            
+            <div class="game-controls">
+                <button id="back-btn" class="btn btn-secondary">Exit Match</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Game Over Modal -->
+    <div id="gameover-modal" class="modal">
+        <div class="modal-backdrop"></div>
+        <div class="modal-content gameover-content">
+            <h2>Full Time</h2>
+            <div class="final-score-display">
+                <div class="final-team">
+                    <span class="final-team-name" id="final-team1">Team 1</span>
+                    <span class="final-score-num" id="final-score1">0</span>
+                </div>
+                <div class="score-divider">-</div>
+                <div class="final-team">
+                    <span class="final-score-num" id="final-score2">0</span>
+                    <span class="final-team-name" id="final-team2">Team 2</span>
+                </div>
+            </div>
+            <p id="winner-text">It's a draw!</p>
+            <div class="gameover-buttons">
+                <button id="play-again-btn" class="btn btn-primary">Play Again</button>
+                <button id="menu-btn" class="btn btn-secondary">Main Menu</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Goal Alert -->
+    <div id="goal-alert" class="goal-alert">
+        <span class="goal-text">GOAL!</span>
+    </div>
+    
+    <script src="game.js"></script>
+</body>
+</html>
